@@ -14,16 +14,13 @@ function App() {
 	    fetchMovies(1);
       setLoad(false);   }
   }, []);
-
-  
+ 
   // left this here as I was testing axios as well
   // const fetchMovies = async (numberOffilms : number) => {
   //   const apiResponse = await axios.get(`https://ghibliapi.herokuapp.com/films?limit=2&fields=id,title`);
   //   setGhibli(apiResponse.data[0].title);
   // };
-
-
-  
+ 
   const fetchMovies = async (numberOffilms : number) => {
     const response = await fetch(`https://ghibliapi.herokuapp.com/films?limit=2&fields=id,title`);
     const movies = await response.json();
