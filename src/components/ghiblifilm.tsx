@@ -1,15 +1,8 @@
-import { IGhibliFilm } from "./interface-ghiblifilm";
+const GhibliFilm : React.FC<{title:string}> = ({title}) => {
 
-interface GhibliFilmProps {
-    film:IGhibliFilm;
-}
-
-const GhibliFilm : React.FC<GhibliFilmProps> = ({film}) => {
-
-    console.log(film);
     return (
 
-        <p> title: {film.title}</p>
+        <p> title: {title}</p>
 
     )
 };
