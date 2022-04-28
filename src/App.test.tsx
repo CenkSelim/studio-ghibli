@@ -44,4 +44,20 @@ test('should return a 500 ststus from call', async () => {
   render(<App />);
   const linkElement = await screen.findByText(/Oops… something went wrong, try again 🤕/i);
   expect(linkElement).toBeInTheDocument();
-})
+});
+
+
+test('should return a 418 ststus from call', async () => {
+  server.use(
+      rest.get('https://ghibliapi.herokuapp.com/films', (req, res, ctx) => {
+        // Respond with "500 Internal Server Error" status for this test.
+        return res(
+          ctx.status(418),
+          ctx.json({ message: "I'm a teapot" }),
+        )
+      }),
+  )
+  render(<App />);
+  const linkElement = await screen.findByText(/418 I'm a tea pot 🫖, silly/i);
+  expect(linkElement).toBeInTheDocument();
+});

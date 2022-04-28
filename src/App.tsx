@@ -34,8 +34,12 @@ function App() {
           setGhibliTitle("Oops… something went wrong, try again 🤕");
       }
 
+      if (response.status === 418){
+          setGhibliTitle("418 I'm a tea pot 🫖, silly");
+      }
+
     } catch (error) {
-      
+       setGhibliTitle("Something horrible has happend to the api call");
     }
   }
 
