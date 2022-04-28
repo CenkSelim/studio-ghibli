@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import GhibliFilm from './components/ghiblifilm';
-import { IGhibliFilm } from './components/interface-ghiblifilm';
+
 
 function App() {
 
@@ -22,10 +21,22 @@ function App() {
   // };
  
   const fetchMovies = async (numberOffilms : number) => {
-    const response = await fetch(`https://ghibliapi.herokuapp.com/films?limit=${numberOffilms}&fields=id,title`);
-    const movies = await response.json();
-    const apiResponse  = await JSON.parse(JSON.stringify(movies));
-    setGhibliTitle(apiResponse[0].title);
+    try {
+      const response = await fetch(`https://ghibliapi.herokuapp.com/films?limit=${numberOffilms}&fields=id,title`);
+     
+      if (response.status === 200){
+        const movies = await response.json();
+        const apiResponse  = await JSON.parse(JSON.stringify(movies));
+        setGhibliTitle(apiResponse[0].title);
+      }     
+           
+      if (response.status === 500){
+          setGhibliTitle("Oops… something went wrong, try again 🤕");
+      }
+
+    } catch (error) {
+      
+    }
   }
 
   return (
