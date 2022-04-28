@@ -17,12 +17,12 @@ function App() {
  
   // left this here as I was testing axios as well
   // const fetchMovies = async (numberOffilms : number) => {
-  //   const apiResponse = await axios.get(`https://ghibliapi.herokuapp.com/films?limit=2&fields=id,title`);
+  //   const apiResponse = await axios.get(`https://ghibliapi.herokuapp.com/films?limit=${numberOffilms}&fields=id,title`);
   //   setGhibli(apiResponse.data[0].title);
   // };
  
   const fetchMovies = async (numberOffilms : number) => {
-    const response = await fetch(`https://ghibliapi.herokuapp.com/films?limit=2&fields=id,title`);
+    const response = await fetch(`https://ghibliapi.herokuapp.com/films?limit=${numberOffilms}&fields=id,title`);
     const movies = await response.json();
     const apiResponse  = await JSON.parse(JSON.stringify(movies));
     setGhibliTitle(apiResponse[0].title);
