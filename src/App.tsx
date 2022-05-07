@@ -12,7 +12,7 @@ function App() {
     if (load) {
 	    fetchMovies(1);
       setLoad(false);   }
-  }, []);
+  }, [load]);
  
   // left this here as I was testing axios as well
   // const fetchMovies = async (numberOffilms : number) => {
